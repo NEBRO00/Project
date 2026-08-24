@@ -15,3 +15,44 @@ document.querySelectorAll('.service').forEach(item => item.addEventListener('cli
 document.querySelector('#trust-grid').innerHTML = trust.map(([icon,title,text]) => `<article class="trust-card"><i>${icon}</i><h3>${title}</h3><p>${text}</p></article>`).join('');
 document.querySelector('#article-row').innerHTML = Array.from({length:4}, () => `<article class="article"><div class="article-copy"><span class="tag">Technologies</span><h3>Agility Isn’t Dead. It’s Finally Becoming Real</h3><small>April 29, 2026</small></div><div class="article-image"></div></article>`).join('');
 document.querySelector('.menu-toggle').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('show'));
+
+// Sticky header: hide on scroll down, show instantly on scroll up
+(() => {
+  const nav = document.querySelector('.nav');
+  const navHeight = nav.offsetHeight;
+  const THRESHOLD = 6; // px of movement needed before reacting, avoids flicker
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  const onScroll = () => {
+    const currentY = Math.max(window.scrollY, 0);
+
+    if (currentY <= navHeight) {
+      nav.classList.remove('nav--hidden'); // always visible near the top
+      lastY = currentY;
+      ticking = false;
+      return;
+    }
+
+    if (Math.abs(currentY - lastY) < THRESHOLD) {
+      ticking = false;
+      return; // ignore tiny moves; keeps lastY stable so small scrolls accumulate
+    }
+
+    if (currentY > lastY) {
+      nav.classList.add('nav--hidden'); // scrolling down -> hide
+    } else {
+      nav.classList.remove('nav--hidden'); // scrolling up -> show immediately
+    }
+
+    lastY = currentY;
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
