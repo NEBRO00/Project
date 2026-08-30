@@ -356,6 +356,7 @@ nav ul li a{
     width: 100%;
     height: auto;
     background: var(--whitety);
+    border: 1px solid red;
 }
 
 .contact-content {
@@ -364,6 +365,7 @@ nav ul li a{
     margin: 0 auto;
     padding: 40px;
     max-width: 480px ;
+    border: 1px solid yellow;
 }
 
 .contact-content h2 {
@@ -371,6 +373,7 @@ nav ul li a{
     color: var(--black);
     font-size: 40px;
     line-height: 1.15;
+    border: 1px solid orange;
 }
 
 .contact-content p {
@@ -379,6 +382,7 @@ nav ul li a{
     color: var(--muted);
     font-size: 16px;
     line-height: 1.45;
+    border: 1px solid brown;
 }
 
 .contact-button {
@@ -389,13 +393,15 @@ nav ul li a{
     color: var(--white);
     font-weight: 700;
     text-decoration: none;
+    border: 1px solid gray;
 }
 
 .contact-map {
-    background: url("icon/Frame 52.svg") center / contain no-repeat;
-    max-width: 500px;  /* เพิ่มจาก 380px */
-    height: 600px;     /* เพิ่มจาก 480px */
+    background: url("icon/Frame\ 52.svg") center / contain no-repeat;
+    max-width: 500px;
+    height: 600px;
     margin: 0 auto;
+    border: 1px solid red;
 }
 
 /* .site-footer {
